@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { FaGithub, FaPlus } from 'react-icons/fa';
+import { FaGithub, FaPlus, FaSpinner } from 'react-icons/fa';
 
 import { Container, Form, SubmitButton } from './styles';
 
@@ -59,7 +59,11 @@ const handleSubmit = useCallback ((e)=>{
          />
 
         <SubmitButton loading={loading ? 1 : 0}>
-          <FaPlus size={14} color="#fff"/>
+          {loading ? (
+            <FaSpinner size={14} color="#fff"/>   
+          ) :(
+            <FaPlus size={14} color="#fff"/>
+          )}          
         </SubmitButton>
 
       </Form>
