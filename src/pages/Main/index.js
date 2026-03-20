@@ -9,13 +9,16 @@ export default function Main(){
 
   const [ newRepo, setNewRepo ] = useState(''); 
   const [ repositorios, setRepositorios ] = useState([]); 
+  const [ loading, setLoading ] = useState(false);
 
 const handleSubmit = useCallback ((e)=>{
        e.preventDefault();
 
   async function submit(){
+    setLoading(true);
 
-    const response = await api.get(`repos/${newRepo}`);
+    try{
+      const response = await api.get(`repos/${newRepo}`);
 
     const data = {
       name: response.data.full_name,
@@ -23,8 +26,14 @@ const handleSubmit = useCallback ((e)=>{
 
     setRepositorios([...repositorios, data]);
     setNewRepo('');
+    }catch(error){
+      console.log(error);   
+
+  }finally{
+    setLoading(false);
 
   }
+}
   submit();
 
   }, [newRepo, repositorios]);
@@ -49,7 +58,7 @@ const handleSubmit = useCallback ((e)=>{
          onChange={handleinputChange}
          />
 
-        <SubmitButton>
+        <SubmitButton loading={loading ? 1 : 0}>
           <FaPlus size={14} color="#fff"/>
         </SubmitButton>
 
