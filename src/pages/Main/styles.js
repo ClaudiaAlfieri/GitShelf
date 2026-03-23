@@ -93,9 +93,17 @@ li{
   a{
     color: #0D2636;
     text-decoration: none;
-  }
-  
+  }  
 }
+`;
 
-
+export const DeleteButton = styled.button.attrs({
+  type: 'button'
+})`
+background: transparent;
+color: #0d2636;
+border: 0;
+padding: 8px 7px;
+outline: 0;
+border-radius: 4px;
 `;
