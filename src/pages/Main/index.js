@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { FaGithub, FaPlus, FaSpinner, FaBars, FaTrash } from 'react-icons/fa';
 
-import { Container, Form, SubmitButton, List,  } from './styles';
+import { Container, Form, SubmitButton, List, DeleteButton  } from './styles';
 
 import api from '../../services/api';
 
@@ -72,7 +72,9 @@ const handleSubmit = useCallback ((e)=>{
         {repositorios.map(repo =>(
           <li key={repo.name}>
             <span>
-              
+              <DeleteButton onClick={()=>{}}>
+                <FaTrash size={14}/>
+              </DeleteButton>
               {repo.name}
             </span>
             <a href="">
