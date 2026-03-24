@@ -10,22 +10,23 @@ export default function Main(){
   const [repositorios, setRepositorios] = useState([]);
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
+  const [loaded, setLoaded] = useState(false);
 
-  // Buscar
-  useEffect(()=>{
+/// Carrega do localStorage
+  useEffect(() => {
     const repoStorage = localStorage.getItem('repos');
-
-    if(repoStorage){
+    if (repoStorage) {
       setRepositorios(JSON.parse(repoStorage));
     }
-
+    setLoaded(true);
   }, []);
 
   
   // Salvar alterações
-  useEffect(()=>{
+  useEffect(() => {
+    if (!loaded) return; 
     localStorage.setItem('repos', JSON.stringify(repositorios));
-  }, [repositorios]);
+  }, [repositorios, loaded]);
 
   const handleSubmit = useCallback((e)=>{
     e.preventDefault();
@@ -82,7 +83,7 @@ export default function Main(){
       
       <h1>
         <FaGithub size={25}/>
-        Meus Repositorios
+        Meus Repositórios
       </h1>
 
       <Form onSubmit={handleSubmit} error={alert}>
