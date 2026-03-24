@@ -52,6 +52,4 @@ This project was developed by Cláudia Alfieri as part of a React learning journ
 
 Contributions are welcome through pull requests!
 
----
-
 Made with ❤️ and React
